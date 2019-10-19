@@ -9,7 +9,7 @@ rem aggarw82
 @dropall
 @createtable
 @populate
-
+@trg1
 set linesize 200;
 set pagesize 50;
 clear screen

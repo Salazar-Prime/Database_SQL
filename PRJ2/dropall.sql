@@ -12,3 +12,5 @@ DROP TABLE Logging;
 
 /* Drop Triggers */ 
 DROP TRIGGER trg_maxbooks;
+DROP TRIGGER trg_charge
+DROP TRIGGER trg_notcharge

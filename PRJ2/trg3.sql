@@ -1,4 +1,4 @@
-/* Trigger 2 - trg_charge*/
+/* Trigger 3 - trg_notcharge*/
 /* Working */
 rem EE 562 Project 2
 rem Varun Aggarwal
@@ -10,24 +10,27 @@ rem aggarw82
 @createtable
 @populate
 
+
 set linesize 200;
 set pagesize 50;
 clear screen
 
 /* Create trigger*/
-CREATE OR REPLACE TRIGGER trg_charge
-AFTER INSERT ON Issue
+CREATE OR REPLACE TRIGGER trg_notcharge
+AFTER UPDATE ON Issue
 FOR EACH ROW
+WHEN (old.return_date IS NULL AND new.return_date IS NOT NULL)
 BEGIN
-	INSERT INTO logging VALUES (:new.book_id, '=book_id', 'trg2');
-	UPDATE Books SET status='charged' WHERE book_id=:new.book_id;
+	INSERT INTO logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:old.return_date), 'trg3');
+	INSERT INTO logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:new.return_date), 'trg3');
+	UPDATE Books SET status='not charged' WHERE book_id=:new.book_id;
 END;
 /
 
 
 /* testing trigger*/
 
-/*
+
 -- tesing for student insertion
 INSERT INTO Issue
 VALUES (2, 2, '3-march-05', null);
@@ -60,10 +63,9 @@ INSERT INTO Issue
 VALUES (11, 4, '13-march-05', null);
 INSERT INTO Issue
 VALUES (12, 2, '14-march-05', null);	
-*/
-/* print debugging tables*/ 
-/*SELECT * FROM Logging;
-SELECT * FROM Issue;
-SELECT * FROM Books;
 
-*/
+/* print debugging tables*/ 
+SELECT * FROM Issue;
+SELECT * FROM Logging;
+SELECT * FROM Books;
+SELECT COUNT(*) AS NOT_CHAR FROM Books WHERE status='not charged';

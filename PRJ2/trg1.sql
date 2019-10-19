@@ -24,16 +24,16 @@ DECLARE
 BEGIN
 	SELECT status INTO position FROM Borrower WHERE borrower_id = :new.borrower_id;
 	SELECT count(*) INTO issued FROM Issue WHERE (borrower_id = :new.borrower_id AND return_date IS null);
-	INSERT INTO logging VALUES (issued ,position);
+	INSERT INTO logging VALUES (issued ,'stat = ' || position, 'trg1');
 	IF position = 'student' THEN
 		IF issued >= 2 THEN
-			INSERT INTO logging VALUES (issued ,TO_CHAR(:new.borrower_id));
+			INSERT INTO logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
 			raise_application_error(-20000, 'Student has already issued 2 Books!');
 		END IF;
 	END IF;
 	IF position = 'faculty' THEN
 		IF issued >= 3 THEN
-			INSERT INTO logging VALUES (issued ,TO_CHAR(:new.borrower_id));
+			INSERT INTO logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
 			raise_application_error(-20001, 'Faculty has already issued 3 Books!');
 		END IF;
 	END IF;
@@ -76,5 +76,5 @@ END;
 -- VALUES (2, 4, '13-march-05', null);
 -- INSERT INTO Issue
 -- VALUES (2, 2, '14-march-05', null);	
-SELECT * FROM Logging;
-SELECT * FROM Issue;
+-- SELECT * FROM Logging;
+-- SELECT * FROM Issue;

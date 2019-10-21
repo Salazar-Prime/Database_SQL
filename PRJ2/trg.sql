@@ -10,25 +10,29 @@ rem aggarw82
 @populate
 set linesize 200;
 set pagesize 50;
+set serveroutput ON;
 clear screen
+SELECT * FROM Author;
 
 /* Create trigger*/
-CREATE OR REPLACE TRIGGER trg_renew
-AFTER/BEFORE UPDATE ON ()
-STATEMENT/FOR EACH ROW
-WHEN ()
+CREATE OR REPLACE TRIGGER trg_test
+BEFORE UPDATE ON Author
+-- FOR EACH ROW
+DECLARE 
+	funny NUMBER;
 BEGIN
-	INSERT INTO logging VALUES ( , , 'trg4');
+	SELECT author_id INTO funny FROM Author;
+	dbms_output.put_line('working!!');
 END;
 /
 
 
 /* testing trigger*/
 
-
-
-
+update author set name='IE' where name='IEEE';
+SELECT * FROM Author;
+SHOW ERROR
 /* print debugging tables*/ 
-SELECT * FROM Issue;
-SELECT * FROM Pending_request;
-SELECT * FROM Logging;
+-- SELECT * FROM Issue;
+-- SELECT * FROM Pending_request;
+-- SELECT * FROM Logging;

@@ -2,7 +2,7 @@ clear screen
 set linesize 200;
 set pagesize 50;
 
-/* Describe table*/
+/* Show table*/
 PROMPT ;
 PROMPT --------------------------------------------------------------------------------;
 PROMPT     Books;

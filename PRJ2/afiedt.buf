@@ -1,2 +1,0 @@
-CREATE TABLE Pending_request( book_id number, requester_id number, request_date date, Issue_date date)
-/

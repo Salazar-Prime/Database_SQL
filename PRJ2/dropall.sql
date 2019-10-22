@@ -1,6 +1,8 @@
 rem EE 562 Project 2
 rem Varun Aggarwal
 rem aggarw82
+/* Drop Functions*/
+DROP FUNCTION fun_return_book;
 
 /* Drop Triggers */ 
 DROP TRIGGER trg_maxbooks;

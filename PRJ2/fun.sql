@@ -1,41 +1,46 @@
-/* Function 1 - fun_issue_book*/
-/*  */
+/* Function 4 - fun_return_book */
+/* Done part 1 of */
 rem EE 562 Project 2
 rem Varun Aggarwal
 rem aggarw82
 
 /* clear history */
 @triggers -- triggers clears all tables et. al.
+TRUNCATE TABLE Logging;
+set linesize 200;
+set pagesize 50;
+set serveroutput ON;
 clear screen
 
 /* Create function*/
-CREATE OR REPLACE FUNCTION fun_issue_book
-	(bor_id IN NUMBER,
-	 bk_id IN NUMBER,
-	 cur_dt IN DATE)
-	 RETURN NUMBER IS stat NUMBER;
-BEGIN 
-	stat := 0;
-	IF stat = 0 THEN
-		stat := 1;
-	END IF;
+CREATE OR REPLACE FUNCTION fun_return_book
+	(bk_id IN NUMBER,
+	 ret_dt IN DATE)
+	 RETURN NUMBER IS stat NUMBER := 0;
+	 cursor cur_issue_id IS SELECT * FROM Issue WHERE book_id=bk_id;
+	 cur cur_issue_id%ROWTYPE;
+BEGIN
+	/* Book return */
+	INSERT INTO logging VALUES (bk_id, 'rd = ' || TO_CHAR(ret_dt), 'fun1');
+	UPDATE Issue SET return_date = ret_dt WHERE return_date IS NULL AND book_id=bk_id; 
+	stat := 1;
+	
+	/* Book issue from Pending requests */
+	FOR cur IN cur_issue_id
+	LOOP 
+		IF cur.issue_date IS NULL THEN
+			/* call fun_issue_anyedition function and exit out of loop*/
+		END IF;
+	END LOOP;
 	RETURN stat;
 END;
 / 
 
 
 /* testing trigger*/
-
-	-- stat := 0;
-	-- IF (SELECT status FROM Books WHERE book_id = bk_id) = 'not charged' THEN
-		-- INSERT INTO Issue VALUES (bk_id, bor_id, cur_dt, null);
-		-- stat := 1;
-	-- ELSE 
-		-- INSERT INTO Pending_request VALUES (bk_id, bor_id, cur_dt);
-	-- END IF;
-
+EXEC DBMS_OUTPUT.PUT_LINE('outside '||fun_return_book(2, '05-APR-19'));
 
 /* print debugging tables*/ 
 SELECT * FROM Issue;
-SELECT * FROM Pending_request;
 SELECT * FROM Logging;
+SHOW ERROR

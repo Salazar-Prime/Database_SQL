@@ -7,6 +7,7 @@ rem aggarw82
 @dropall
 @createtable
 @populate
+@functions
 set linesize 200;
 set pagesize 50;
 clear screen
@@ -64,13 +65,13 @@ INSERT INTO Issue
 VALUES (2, 2, '3-march-19', null);
 INSERT INTO Issue
 VALUES (3, 2, '4-march-19', null);
-UPDATE Issue SET return_date = '7-march-19' WHERE borrower_id=2 AND book_id=2;
+EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(2, '7-march-19'));
 INSERT INTO Issue
 VALUES (4, 2, '5-march-19', null);
 INSERT INTO Issue
 VALUES (5, 2, '5-march-19', null);
 INSERT INTO Issue
-VALUES (13, 3, '6-march-19', null);
+VALUES (2, 3, '6-march-19', null);
 
 -- testing for faculty insertion
 INSERT INTO Issue

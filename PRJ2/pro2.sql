@@ -19,7 +19,7 @@ clear screen
 --
 
 CREATE OR REPLACE PROCEDURE pro_print_fine (cur_date IN DATE)
-AS
+AS	
 cursor cur_bor_id IS SELECT * FROM Issue;
 bor_name varchar2(30);
 date_diff number;	

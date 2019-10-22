@@ -50,7 +50,7 @@ END;
 /* testing trigger*/
 INSERT INTO Issue
 VALUES (11, 3, '4-april-19', null);
-EXEC pro_listborr_mon(3,'JUN');
+EXEC pro_listborr_mon(3,'APR');
 
 
 /* print debugging tables*/ 
@@ -58,4 +58,3 @@ SELECT * FROM Logging;
 SELECT * FROM Issue;
 -- SELECT * FROM Borrower;
 SHOW error;
-

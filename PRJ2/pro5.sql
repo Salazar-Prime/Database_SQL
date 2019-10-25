@@ -28,13 +28,12 @@ BEGIN
 
 	DBMS_OUTPUT.PUT_LINE(rpad('-----',15)|| rpad('----',15)
 						 || rpad('-----------',30)|| rpad('-------------',15));		
-	/* fetching data */
-	--
-	--
+
+						 
+	/* fetching data -- funciton call: fun_most_popular -- */
 	
 	/* printing output */	
-	--
-	--
+
 END;
 /
 

@@ -10,7 +10,6 @@ rem aggarw82
 @functions
 set linesize 200;
 set pagesize 50;
-clear screen
 
 /* TRIGGER 1 */
 CREATE OR REPLACE TRIGGER trg_maxbooks
@@ -60,35 +59,35 @@ BEGIN
 END;
 /
 
+clear screen
+
 -- tesing for student insertion
-INSERT INTO Issue
-VALUES (2, 2, '3-march-19', null);
-INSERT INTO Issue
-VALUES (3, 2, '4-march-19', null);
-EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(2, '7-march-19'));
-INSERT INTO Issue
-VALUES (4, 2, '5-march-19', null);
-INSERT INTO Issue
-VALUES (5, 2, '5-march-19', null);
-INSERT INTO Issue
-VALUES (2, 3, '6-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (2, 2, '3-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (3, 2, '4-march-19', null);
+-- EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(2, '7-march-19'));
+-- INSERT INTO Issue
+-- VALUES (4, 2, '5-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (5, 2, '5-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (2, 3, '6-march-19', null);
 
--- testing for faculty insertion
-INSERT INTO Issue
-VALUES (6, 4, '7-march-19', null);
-INSERT INTO Issue
-VALUES (7, 4, '8-march-19', null);
-INSERT INTO Issue
-VALUES (8, 4, '9-march-19', null);
-INSERT INTO Issue
-VALUES (9, 4, '10-march-19', null);
-INSERT INTO Issue
-VALUES (10, 5, '11-march-19', null);
+-- -- testing for faculty insertion
+-- INSERT INTO Issue
+-- VALUES (6, 4, '7-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (7, 4, '8-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (8, 4, '9-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (9, 4, '10-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (10, 5, '11-march-19', null);
 
--- random testing
-INSERT INTO Issue
-VALUES (1, 4, '12-march-19', null);
-INSERT INTO Issue
-VALUES (11, 4, '13-march-19', null);
-INSERT INTO Issue
-VALUES (12, 2, '14-march-19', null);	
+-- -- random testing
+-- INSERT INTO Issue
+-- VALUES (1, 4, '12-march-19', null);
+-- INSERT INTO Issue
+-- VALUES (12, 2, '14-march-19', null);	

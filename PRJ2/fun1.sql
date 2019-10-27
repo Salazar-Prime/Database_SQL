@@ -40,7 +40,7 @@ BEGIN
 		INSERT INTO Pending_request VALUES (bk_id, bor_id, cur_dt, null);
 		stat := 0;
 	END IF;
-	INSERT INTO logging VALUES (bor_id, 'STAT = ' || TO_CHAR(bk_id), 'fun1');
+	INSERT INTO logging VALUES (bor_id, 'STAT = ' || TO_CHAR(stat), 'fun1');
 	RETURN stat;
 END;
 / 

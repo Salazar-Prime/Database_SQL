@@ -1,5 +1,5 @@
 /* Function 4 - fun_return_book */
-/* Done part 1 of */
+/* Working */
 rem EE 562 Project 2
 rem Varun Aggarwal
 rem aggarw82
@@ -23,30 +23,35 @@ CREATE OR REPLACE FUNCTION fun_return_book
 	 ret_dt IN DATE)
 	 RETURN NUMBER IS 
 	 stat NUMBER := 0;
-	 cursor cur_issue_id IS SELECT * FROM Issue WHERE book_id=bk_id;
-	 cur cur_issue_id%ROWTYPE;
+	 cursor cur_pend IS SELECT * FROM Pending_request WHERE book_id=bk_id AND issue_date IS NULL ORDER BY request_date;
+	 cur cur_pend%ROWTYPE;
 BEGIN
 	/* Book return */
-	INSERT INTO logging VALUES (bk_id, 'rd = ' || TO_CHAR(ret_dt), 'fun4');
+	INSERT INTO logging VALUES (bk_id, 'rd = ' || TO_CHAR(ret_dt), 'fun4-a');
 	UPDATE Issue SET return_date = ret_dt WHERE return_date IS NULL AND book_id=bk_id; 
 	stat := 1;
 	
-	-- /* Book issue from Pending requests */
-	-- FOR cur IN cur_issue_id
-	-- LOOP 
-	-- 	IF cur.issue_date IS NULL THEN
-	-- 		/* call fun_issue_anyedition or fun_issue and exit out of loop*/
-	-- 	END IF;
-	-- END LOOP;
+	/* Serving Pending Requests */
+	OPEN cur_pend;
+    FETCH cur_pend INTO cur;
+    IF cur_pend%NOTFOUND THEN
+		INSERT INTO logging VALUES (bk_id, 'no pend', 'fun4-b');
+    ELSE
+		INSERT INTO logging VALUES (bk_id, 'yes pend', 'fun4-b');
+    	UPDATE Pending_request SET issue_date = ret_dt WHERE issue_date IS NULL AND book_id=bk_id;
+    	stat := fun_issue_book(cur.requester_id,bk_id,ret_dt);
+	END IF;
+	CLOSE cur_pend;
 	RETURN stat;
 END;
 / 
 
 
 /* testing trigger*/
-EXEC DBMS_OUTPUT.PUT_LINE('outside '||fun_return_book(2, '05-APR-19'));
+EXEC DBMS_OUTPUT.PUT_LINE('outside '||fun_return_book(1, '05-APR-19'));
 
 /* print debugging tables*/ 
 SELECT * FROM Issue;
+SELECT * FROM Pending_request;
 SELECT * FROM Logging;
 SHOW ERROR

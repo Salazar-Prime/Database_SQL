@@ -59,6 +59,9 @@ BEGIN
 END;
 /
 
+/* testing */
+@mydata
+TRUNCATE TABLE Logging;
 clear screen
 
 -- tesing for student insertion

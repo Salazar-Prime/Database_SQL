@@ -129,13 +129,30 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE(rpad('-------------',30)|| rpad('-------',15)|| rpad('----------',15));					 			
 	
 	FOR cur IN cur_bor_id
-	LOOP
-	
-	/* fetching borrower name */ 
-	SELECT name INTO bor_name FROM BORROWER WHERE borrower_id = cur.borrower_id;
-	/* printing output */
-	DBMS_OUTPUT.PUT_LINE(rpad(bor_name,30)|| rpad(cur.book_id,15)|| rpad(cur.issue_date,15));	
-	
+	LOOP	
+		/* fetching borrower name */ 
+		SELECT name INTO bor_name FROM BORROWER WHERE borrower_id = cur.borrower_id;
+		/* printing output */
+		DBMS_OUTPUT.PUT_LINE(rpad(bor_name,30)|| rpad(cur.book_id,15)|| rpad(cur.issue_date,15));		
 	END LOOP;
+END;
+/
+
+/* PROCEDURE 5 */
+CREATE OR REPLACE PROCEDURE pro_list_popular
+AS
+stat NUMBER;
+BEGIN
+	
+	DBMS_OUTPUT.PUT_LINE(rpad('Month',30)|| rpad('Year',15)
+						 || rpad('Author Name',30)|| rpad('# of Editions',15));	
+
+	DBMS_OUTPUT.PUT_LINE(rpad('-----',30)|| rpad('----',15)
+						 || rpad('-----------',30)|| rpad('-------------',15));		
+	FOR mon IN 1..12
+	LOOP
+		stat := fun_most_popular(to_char(to_date(mon,'MM'),'MON')); 
+	END LOOP;
+
 END;
 /

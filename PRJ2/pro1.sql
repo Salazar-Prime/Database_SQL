@@ -5,12 +5,12 @@ rem Varun Aggarwal
 rem aggarw82
 
 /* clear history */
-@triggers -- triggers clears all tables et. al.
-TRUNCATE TABLE Logging;
-set linesize 200;
-set pagesize 50;
-set serveroutput ON;
-clear screen
+-- @triggers -- triggers clears all tables et. al.
+-- TRUNCATE TABLE Logging;
+-- set linesize 200;
+-- set pagesize 50;
+-- set serveroutput ON;
+-- clear screen
 
 --
 --

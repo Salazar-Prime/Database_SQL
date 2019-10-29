@@ -38,7 +38,7 @@ BEGIN
 		INSERT INTO logging VALUES (bk_id, 'no pend', 'fun4-b');
     ELSE
 		INSERT INTO logging VALUES (bk_id, 'yes pend', 'fun4-b');
-    	UPDATE Pending_request SET issue_date = ret_dt WHERE issue_date IS NULL AND book_id=bk_id;
+    	UPDATE Pending_request SET issue_date = ret_dt WHERE issue_date IS NULL AND book_id=bk_id AND requester_id = cur.requester_id;
     	stat := fun_issue_book(cur.requester_id,bk_id,ret_dt);
 	END IF;
 	CLOSE cur_pend;

@@ -26,4 +26,4 @@ DROP TABLE Pending_request;
 DROP TABLE Books;
 DROP TABLE Author;
 DROP TABLE Borrower;
-DROP TABLE Logging;
+-- DROP TABLE Logging;

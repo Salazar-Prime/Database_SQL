@@ -3,7 +3,7 @@ rem Varun Aggarwal
 rem aggarw82
 
 /* temp thing - delete finally */ 						
-CREATE TABLE logging(for_int number, for_string varchar(50), from_ varchar2(10));
+-- CREATE TABLE logging(for_int number, for_string varchar(50), from_ varchar2(10));
 
 /* Create table*/
 CREATE TABLE Books( book_id number,

@@ -13,16 +13,16 @@ DECLARE
 BEGIN
 	SELECT status INTO position FROM Borrower WHERE borrower_id = :new.borrower_id;
 	SELECT COUNT(*) INTO issued FROM Issue WHERE (borrower_id = :new.borrower_id AND return_date IS null);
-	INSERT INTO logging VALUES (issued ,'stat = ' || position, 'trg1');
+	-- INSERT INTO Logging VALUES (issued ,'stat = ' || position, 'trg1');
 	IF position = 'student' THEN
 		IF issued >= 2 THEN
-			INSERT INTO logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
+			-- INSERT INTO Logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
 			raise_application_error(-20000, 'Student has already issued 2 Books!');
 		END IF;
 	END IF;
 	IF position = 'faculty' THEN
 		IF issued >= 3 THEN
-			INSERT INTO logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
+			-- INSERT INTO Logging VALUES (issued ,'bor_id = ' || TO_CHAR(:new.borrower_id), 'trg1');
 			raise_application_error(-20001, 'Faculty has already issued 3 Books!');
 		END IF;
 	END IF;
@@ -34,7 +34,7 @@ CREATE OR REPLACE TRIGGER trg_charge
 AFTER INSERT ON Issue
 FOR EACH ROW
 BEGIN
-	INSERT INTO logging VALUES (:new.book_id, '=book_id', 'trg2');
+	-- INSERT INTO Logging VALUES (:new.book_id, '=book_id', 'trg2');
 	UPDATE Books SET status='charged' WHERE book_id=:new.book_id;
 END;
 /
@@ -45,8 +45,8 @@ AFTER UPDATE ON Issue
 FOR EACH ROW
 WHEN (old.return_date IS NULL AND new.return_date IS NOT NULL)
 BEGIN
-	INSERT INTO logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:old.return_date), 'trg3');
-	INSERT INTO logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:new.return_date), 'trg3');
+	-- INSERT INTO Logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:old.return_date), 'trg3');
+	-- INSERT INTO Logging VALUES (:new.book_id, 'rd = ' || TO_CHAR(:new.return_date), 'trg3');
 	UPDATE Books SET status='not charged' WHERE book_id=:new.book_id;
 END;
 /

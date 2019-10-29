@@ -95,7 +95,7 @@ bor_name varchar2(30);
 bok_name varchar2(50);	
 cur cur_bor_id%ROWTYPE;
 BEGIN
-	INSERT INTO Logging VALUES (bor_id,mon,'pro3');
+	-- INSERT INTO Logging VALUES (bor_id,mon,'pro3');
 	DBMS_OUTPUT.PUT_LINE(rpad('Borrower ID',15)|| rpad('Borrower Name',30)|| rpad('Book ID',15)
 						|| rpad('Book Title',30)|| rpad('Issue Date',15) || rpad('Return Date',15));	
 

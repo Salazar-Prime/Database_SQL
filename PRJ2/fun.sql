@@ -26,7 +26,7 @@ BEGIN
 		INSERT INTO Pending_request VALUES (bk_id, bor_id, cur_dt, null);
 		stat := 0;
 	END IF;
-	INSERT INTO logging VALUES (bor_id, 'STAT = ' || TO_CHAR(bk_id), 'fun1');
+	-- INSERT INTO logging VALUES (bor_id, 'STAT = ' || TO_CHAR(bk_id), 'fun1');
 	RETURN stat;
 END;
 / 
@@ -53,14 +53,14 @@ BEGIN
 		/* for issue */
 		bk_id := cur.book_id;
 		stat := 1;
-		INSERT INTO logging VALUES (bk_id, 'issued', 'fun2');
+		-- INSERT INTO logging VALUES (bk_id, 'issued', 'fun2');
 	ELSE 	
 		/* for adding to pending request*/
 		SELECT book_id INTO bk_id 
 		FROM (SELECT * FROM Books WHERE book_title=bk_name ORDER BY edition DESC)
 		WHERE ROWNUM = 1;
 		
-		INSERT INTO logging VALUES (bk_id, 'to pend', 'fun2');
+		-- INSERT INTO logging VALUES (bk_id, 'to pend', 'fun2');
 	END IF;
 	
 	stat := fun_issue_book(bor_id, bk_id, cur_dt);
@@ -128,7 +128,7 @@ CREATE OR REPLACE FUNCTION fun_return_book
 	 cur cur_pend%ROWTYPE;
 BEGIN
 	/* Book return */
-	INSERT INTO logging VALUES (bk_id, 'rd = ' || TO_CHAR(ret_dt), 'fun4-a');
+	-- INSERT INTO logging VALUES (bk_id, 'rd = ' || TO_CHAR(ret_dt), 'fun4-a');
 	UPDATE Issue SET return_date = ret_dt WHERE return_date IS NULL AND book_id=bk_id; 
 	stat := 1;
 	
@@ -136,9 +136,10 @@ BEGIN
 	OPEN cur_pend;
     FETCH cur_pend INTO cur;
     IF cur_pend%NOTFOUND THEN
-		INSERT INTO logging VALUES (bk_id, 'no pend', 'fun4-b');
+		-- INSERT INTO logging VALUES (bk_id, 'no pend', 'fun4-b');
+		stat := 0;
     ELSE
-		INSERT INTO logging VALUES (bk_id, 'yes pend', 'fun4-b');
+		-- INSERT INTO logging VALUES (bk_id, 'yes pend', 'fun4-b');
     	UPDATE Pending_request SET issue_date = ret_dt WHERE issue_date IS NULL AND book_id=bk_id AND requester_id = cur.requester_id;
     	stat := fun_issue_book(cur.requester_id,bk_id,ret_dt);
 	END IF;

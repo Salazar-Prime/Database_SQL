@@ -3,15 +3,23 @@ rem EE 562 Project 2
 rem Varun Aggarwal
 rem aggarw82
 
-/* step 1 */
-@dropall
-@createtable
-@populate
-@functions
-@procedures
+/* some configuration settings */
 set linesize 200;
 set pagesize 50;
 set SERVEROUTPUT ON;
+
+/* step 1 */
+begin
+dbms_output.put_line('==================================================');
+dbms_output.put_line('1 - Create, Populate, procedures, functions');
+dbms_output.put_line('==================================================');
+end;
+/
+@createtable
+@populate
+@fun
+@pro
+
 
 /* step 2 */
 begin
@@ -50,7 +58,7 @@ EXEC DBMS_OUTPUT.PUT_LINE(fun_issue_anyedition(2,'DATA STRUCTURE','W. GATES',to_
 EXEC DBMS_OUTPUT.PUT_LINE(fun_issue_anyedition(4,'CALCULUS III','H. ANTON',to_date('4/4/2003','MM/DD/YY')));
 EXEC DBMS_OUTPUT.PUT_LINE(fun_issue_anyedition(11,'ORACLE','ORACLE PRESS',to_date('3/8/2003','MM/DD/YY')));
 EXEC DBMS_OUTPUT.PUT_LINE(fun_issue_anyedition(6,'IEEE MULTIMEDIA','IEEE',to_date('2/17/2003','MM/DD/YY')));
-/
+
 
 /* step 5 */ 
 begin
@@ -82,7 +90,7 @@ EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(1,to_date('2/28/03','MM/DD/YY')));
 EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(2,to_date('2/28/03','MM/DD/YY')));
 EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(4,to_date('2/28/03','MM/DD/YY')));
 EXEC DBMS_OUTPUT.PUT_LINE(fun_return_book(10,to_date('2/28/03','MM/DD/YY')));
-/
+
 
 /* step 8 */
 begin
@@ -150,3 +158,18 @@ WHERE borrower_id=
              (SELECT max(P1.issue_date-P1.request_date)
               FROM Pending_request P1
               WHERE P1.issue_date IS NOT NULL));
+
+/* step 14 */
+begin
+dbms_output.put_line('==================================================');
+dbms_output.put_line('14 - Drop all ');
+dbms_output.put_line('==================================================');
+end;
+/
+@dropall        
+begin
+dbms_output.put_line('==================================================');
+dbms_output.put_line(' END OF OUTPUT ');
+dbms_output.put_line('==================================================');
+end;
+/

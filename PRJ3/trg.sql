@@ -3,69 +3,76 @@ rem Keertana Marella
 rem kmarella
 
 -- Procedure 2
-Create or Replace PROCEDURE populate_db
+CREATE OR REPLACE PROCEDURE populate_db
 IS
-Cursor X is
-SELECT Patient_Name, General_Ward_admission_date, Patient_Type FROM PATIENT_INPUT Order by  General_Ward_admission_date, Patient_Name;
-X_Var X%ROWTYPE;
+	debug1 varchar(100);
+	debug2 varchar(100);
+	Cursor Pinp IS SELECT * FROM PATIENT_INPUT ORDER BY General_Ward_admission_date, Patient_Name;
+	cur Pinp%ROWTYPE;
 begin
-For X_Var in X
-loop
-INSERT INTO General_Ward Values(X_Var.Patient_Name,X_Var.General_Ward_admission_date,X_Var.Patient_Type);
-END loop;
+	For cur in Pinp
+	loop
+		INSERT INTO General_Ward Values(cur.Patient_Name, cur.General_Ward_admission_date, cur.Patient_Type);
+		-- debug1 := 'SELECT * FROM BEDS';
+		-- debug2 := 'SELECT * FROM Flow WHERE Pname = ' || cur.Patient_Name;
+		-- EXECUTE IMMEDIATE debug1;
+		-- EXECUTE IMMEDIATE debug2;
+	END loop;
 END;
 /
+-- SHOW ERROR;
+
 
 -- Procedure 3
 
-Create or Replace Procedure populate_dr
+CREATE OR REPLACE Procedure populate_dr
 IS
 CUR_DATE Date;
-days VARCHAR2(30);
+needed VARCHAR2(30);
 BEGIN
 	FOR i IN 0..364
 	LOOP
 	Cur_Date := To_date('01/01/2005','MM/DD/YYYY')+i;
-	days := to_char(CUR_DATE,'DY');
+	needed := to_char(CUR_DATE,'DY');
 
-		IF days='SUN' THEN
+		IF needed='SUN' THEN
 			INSERT INTO DR_Schedule Values('James','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Robert','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Mike','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Adams','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Tracey','Surgery',Cur_Date);
 			INSERT INTO DR_Schedule Values('Rick','Surgery',Cur_Date);
-		ELSIF days='MON' THEN
+		ELSIF needed='MON' THEN
 			INSERT INTO DR_Schedule Values('Robert','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Mike','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Adams','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Tracey','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Rick','Surgery',Cur_Date);
-		ELSIF days='TUE' THEN
+		ELSIF needed='TUE' THEN
 			INSERT INTO DR_Schedule Values('Mike','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Adams','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Tracey','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Rick','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('James','Surgery',Cur_Date);
-		ELSIF days='WED' THEN
+		ELSIF needed='WED' THEN
 			INSERT INTO DR_Schedule Values('Adams','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Tracey','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Rick','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('James','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Robert','Surgery',Cur_Date);
-		ELSIF days='THU' THEN
+		ELSIF needed='THU' THEN
 			INSERT INTO DR_Schedule Values('Tracey','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Rick','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('James','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Robert','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Mike','Surgery',Cur_Date);
-		ELSIF days='FRI' THEN
+		ELSIF needed='FRI' THEN
 			INSERT INTO DR_Schedule Values('Rick','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('James','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Robert','PRE_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Mike','POST_SURGERY_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Adams','Surgery',Cur_Date);
-		ELSIF days='SAT' THEN
+		ELSIF needed='SAT' THEN
 			INSERT INTO DR_Schedule Values('James','General_Ward',Cur_Date);
 			INSERT INTO DR_Schedule Values('Robert','SCREENING_WARD',Cur_Date);
 			INSERT INTO DR_Schedule Values('Mike','PRE_SURGERY_WARD',Cur_Date);
@@ -77,50 +84,50 @@ END;
 /
 
 -- Procedure 4
-Create or Replace Procedure populate_sr
+CREATE OR REPLACE Procedure populate_sr
 IS
 CUR_DATE Date;
-days VARCHAR2(30);
+needed VARCHAR2(30);
 BEGIN
 For i in 0..364
 loop
 Cur_Date := To_date('01/01/2005','MM/DD/YYYY')+i;
-days := to_char(CUR_DATE,'DY');
-IF days='SUN' THEN
+needed := to_char(CUR_DATE,'DY');
+IF needed='SUN' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Smith',Cur_Date); 
  INSERT INTO Surgeon_Schedule Values('Dr. Charles',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Taylor',Cur_Date);
  
- ELSIF days='MON' THEN
+ ELSIF needed='MON' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Smith',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Charles',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Taylor',Cur_Date);
  
  
- ELSIF days='TUE' THEN
+ ELSIF needed='TUE' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Richards',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Gower',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('6',Cur_Date);
 
 
- ELSIF days='WED' THEN
+ ELSIF needed='WED' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Richards',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Gower',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Rutherford',Cur_Date);
  
  
- ELSIF days='THU' THEN
+ ELSIF needed='THU' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Smith',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Charles',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Taylor',Cur_Date);
  
  
- ELSIF days='FRI' THEN
+ ELSIF needed='FRI' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Richards',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Gower',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Rutherford',Cur_Date);
  
- ELSIF days='SAT' THEN
+ ELSIF needed='SAT' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Richards',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Gower',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Rutherford',Cur_Date);
@@ -130,44 +137,59 @@ IF days='SUN' THEN
  /
  
 
+
+
+
+
+
+
+
 -- Trigger 1
-Create or Replace Trigger trg_gen
+CREATE OR REPLACE Trigger trg_gen
 After INSERT on GENERAL_WARD
 For Each ROW
 DECLARE
-days date;
-soonest date;
-I_Bed_No number;
+	needed date;
+	soonest date;
+	I_Bed_No number;
 BEGIN
-days:= :new.G_Admission_Date+3;
+			
+	needed:= :new.G_Admission_Date+3;
 
-SELECT min(Available_Date) INTO soonest
-FROM Beds WHERE Ward='SW';
+	SELECT min(Available_Date) INTO soonest
+	FROM Beds WHERE Ward='SW';
 
-SELECT Bed_No INTO I_Bed_No
-FROM Beds
-WHERE Available_Date=soonest and ROWNUM = 1;
+	SELECT Bed_No INTO I_Bed_No
+	FROM Beds
+	WHERE Available_Date=soonest and ROWNUM = 1;
 
-IF days>=soonest THEN
+	IF needed>=soonest THEN
+		-- create record in flow table
+		INSERT INTO FLOW (Pname, G_Date, S_Date) VALUES (:new.Patient_Name, :new.G_Admission_Date, needed);	
+		INSERT INTO SCREENING_WARD VALUES(:new.Patient_Name,needed,I_Bed_No,:new.Patient_Type);
 
-INSERT INTO SCREENING_WARD VALUES(:New.Patient_Name,days,I_Bed_No,:New.Patient_Type);
+	ELSE 
+		-- create record in flow table
+		INSERT INTO FLOW (Pname, G_Date, S_Date) VALUES (:new.Patient_Name, :new.G_Admission_Date, soonest);	
+		INSERT INTO SCREENING_WARD VALUES(:new.Patient_Name,soonest,I_Bed_No,:new.Patient_Type);
 
-Else 
-
-INSERT INTO SCREENING_WARD VALUES(:New.Patient_Name,soonest,I_Bed_No,:New.Patient_Type);
-
-END IF;
+	END IF;
 
 END;
 /
 
--- Trigger 2
 
-Create or Replace Trigger trg_scr
-After INSERT on SCREENING_WARD
-For Each Row
-Declare
-	days date;
+
+
+
+
+
+-- Trigger 2
+CREATE OR REPLACE TRIGGER trg_scr
+AFTER INSERT ON SCREENING_WARD
+FOR EACH ROW
+DECLARE
+	needed date;
 	soonest date;
 	I_Bed_No number;
 	Healthy number;
@@ -176,49 +198,76 @@ Declare
 	i number;
 
 BEGIN
-	days := :new.S_Admission_Date + 3;
+
+	-- update record in flow table
+	UPDATE FLOW SET S_Date = :new.S_Admission_Date
+	WHERE Pname = :new.Patient_Name AND G_Date < :new.S_Admission_Date AND G_Date > :new.S_Admission_Date - 7;
+
+	needed := :new.S_Admission_Date + 3;
 
 	SELECT min(Available_Date) INTO soonest
 	FROM Beds
-	WHERE Ward='SW';
+	WHERE Ward='PW';
 
 	SELECT Bed_No INTO I_Bed_No
 	FROM Beds
 	WHERE Available_Date=soonest and ROWNUM = 1;
 
-	IF days >= soonest THEN
+	IF needed >= soonest THEN
+		
+		-- update record in flow table
+		UPDATE FLOW SET Pre_Date = needed, Post_Date = needed + 2
+		WHERE Pname = :new.Patient_Name AND S_Date = :new.S_Admission_Date;
 
- 		UPDATE Beds SET Available_Date=days WHERE Bed_No=:new.Bed_No AND Ward = 'SW';
-		INSERT INTO PRE_SURGERY_WARD VALUES (:new.Patient_Name, days, I_Bed_No, :new.Patient_Type);
+ 		UPDATE Beds SET Available_Date = needed WHERE Bed_No=:new.Bed_No AND Ward = 'SW';
+		INSERT INTO PRE_SURGERY_WARD VALUES (:new.Patient_Name, needed, I_Bed_No, :new.Patient_Type);
 
-		UPDATE Beds SET Available_Date=days+2 WHERE Bed_No=:new.Bed_No AND Ward = 'PW';
-		INSERT INTO POST_SURGERY_WARD VALUES (:new.Patient_Name, days + 2, Null, 1, :new.Patient_Type);
-	Else
+		UPDATE Beds SET Available_Date = needed + 2 WHERE Bed_No=:new.Bed_No AND Ward = 'PW';
+		INSERT INTO POST_SURGERY_WARD VALUES (:new.Patient_Name, needed + 2, Null, 1, :new.Patient_Type);
+	ELSE
 
-		Wait_Time := soonest - days;
+		Wait_Time := soonest - needed;
 
 		FOR i IN 1..Wait_Time
 		LOOP
 
-		SELECT Count(*) INTO Check_Health
-		FROM Patient_Chart
-		WHERE Pdate >= :new.S_Admission_Date+(i-1) and Pdate < days+i and Temperature >= 97 and Temperature <= 100 and BP <= 140 and BP >= 110;
+			SELECT Count(*) INTO Check_Health
+			FROM Patient_Chart
+			WHERE Pdate >= :new.S_Admission_Date+(i-1) and Pdate < needed+i and Temperature >= 97 and Temperature <= 100 and BP <= 140 and BP >= 110;
 
-			IF Check_Health = 4 THEN
-	           Healthy := 1;
-	           Exit;
-			END IF;
+				IF Check_Health = 4 THEN
+		           Healthy := 1;
+		           Exit;
+				END IF;
 
 		END Loop;
 
 		IF Healthy = 1 THEN
-			UPDATE Beds SET Available_Date = days+(i-1) WHERE Bed_No=:new.Bed_No AND Ward = 'SW';
-			INSERT INTO POST_SURGERY_WARD values (:New.Patient_Name, days+(i-1), Null, 1, :new.Patient_Type);
+
+			-- update beds table
+			UPDATE Beds SET Available_Date = needed + (i-1) WHERE Bed_No=:new.Bed_No AND Ward = 'SW';
+			
+			-- update record in flow table	
+			UPDATE FLOW SET Post_Date = needed + (i-1)
+			WHERE Pname = :new.Patient_Name AND S_Date = :new.S_Admission_Date;
+
+			-- transfer paitent to post surgery ward
+			INSERT INTO POST_SURGERY_WARD values (:new.Patient_Name, needed+(i-1), Null, 1, :new.Patient_Type);
+			
 		ELSE
+
+			-- update beds table
 			UPDATE Beds SET Available_Date = soonest WHERE Bed_No=:new.Bed_No AND Ward = 'SW';
-			INSERT INTO PRE_SURGERY_WARD values (:New.Patient_Name, soonest, I_BeD_No,:New.Patient_Type);	
-			UPDATE Beds SET Available_Date = soonest+2 WHERE Bed_No=:new.Bed_No AND Ward = 'PW';		
+			UPDATE Beds SET Available_Date = soonest + 2 WHERE Bed_No=:new.Bed_No AND Ward = 'PW';	
+
+			-- update record in flow table	
+			UPDATE FLOW SET Pre_Date = soonest, Post_Date = soonest + 2
+			WHERE Pname = :new.Patient_Name AND S_Date = :new.S_Admission_Date;
+
+			-- transfer paitent to post surgery ward
+			INSERT INTO PRE_SURGERY_WARD values (:new.Patient_Name, soonest, I_BeD_No,:new.Patient_Type);				
 			INSERT INTO POST_SURGERY_WARD VALUES (:new.Patient_Name, soonest + 2, Null, 1, :new.Patient_Type);
+
 		END IF;		   
 			  
 	END IF;
@@ -227,8 +276,10 @@ END;
 /
 
 
+
+
 -- Trigger 3
-Create or Replace Trigger trg_post
+CREATE OR REPLACE TRIGGER trg_post
 BEFORE INSERT on POST_SURGERY_WARD
 FOR EACH ROW
 DECLARE
@@ -266,6 +317,10 @@ BEGIN
 		END IF;
 
 	END IF;
+
+	-- update record in flow table	
+	UPDATE FLOW SET Scount = :new.Scount, D_Date = :new.Discharge_Date, Total_Days = :new.Discharge_Date - G_Date
+	WHERE Pname = :new.Patient_Name AND  Post_Date = :new.Post_Admission_Date;
 
 END;
 /

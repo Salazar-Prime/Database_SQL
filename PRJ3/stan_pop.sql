@@ -7,8 +7,11 @@ rem SDOERGER
 BEGIN
 	for i in 0..365
 	loop
+		--unhealty tom
+		insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(97,100)),round(dbms_random.value(105,140)));
+		
 		--Random
-		insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+		-- insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		insert into Patient_Chart values('Emma',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		-- insert into Patient_Chart values('Liam',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		-- insert into Patient_Chart values('Olivia',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
@@ -87,7 +90,6 @@ END;
 --Populate with Procedure 4
 
 -- Insert records into PATIENT_INPUT
---insert into PATIENT_INPUT values(Patient_Name varchar2(30),General_ward_admission_date date, Patient_Type varchar2(10));
 insert into PATIENT_INPUT values('Tom',to_date('01/01/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('Emma',to_date('01/01/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Liam',to_date('01/01/05','MM/DD/YY'),'Neuro');
@@ -109,12 +111,17 @@ insert into PATIENT_INPUT values('Darth',to_date('04/05/05','MM/DD/YY'),'Cardiac
 insert into PATIENT_INPUT values('Darth Maul',to_date('04/07/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('Emperor',to_date('04/03/05','MM/DD/YY'),'Cardiac');
 
--- insert into PATIENT_INPUT values('Herbert',to_date('04/18/05','MM/DD/YY'),'General');
+
 insert into PATIENT_INPUT values('Isaac',to_date('04/19/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('John',to_date('04/19/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('James',to_date('04/19/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Kurt',to_date('04/19/05','MM/DD/YY'),'Neuro');
 insert into PATIENT_INPUT values('Louis',to_date('04/19/05','MM/DD/YY'),'General');
+
+-- insert into PATIENT_INPUT values('Darth Maul',to_date('04/19/05','MM/DD/YY'),'Cardiac');
+-- insert into PATIENT_INPUT values('Darth',to_date('04/19/05','MM/DD/YY'),'Cardiac');
+-- insert into PATIENT_INPUT values('Emperor',to_date('04/19/05','MM/DD/YY'),'Cardiac');
+-- insert into PATIENT_INPUT values('Gordon',to_date('04/19/05','MM/DD/YY'),'General');
 
 insert into PATIENT_INPUT values('Goofus',to_date('05/05/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Merlin',to_date('05/06/05','MM/DD/YY'),'Cardiac');
@@ -122,7 +129,6 @@ insert into PATIENT_INPUT values('Norman',to_date('05/07/05','MM/DD/YY'),'Neuro'
 insert into PATIENT_INPUT values('Orville',to_date('05/07/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Persiphony',to_date('05/08/05','MM/DD/YY'),'General');
 
--- insert into PATIENT_INPUT values('Bob',to_date('12/01/04','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Bob',to_date('01/02/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('Bob',to_date('04/19/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('Bob',to_date('05/07/05','MM/DD/YY'),'Cardiac');

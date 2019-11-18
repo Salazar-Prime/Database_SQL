@@ -2,6 +2,10 @@ rem EE 562 Project 3
 rem Varun Aggarwal		
 rem aggarw82
 
+set linesize 200;
+set pagesize 50;
+set SERVEROUTPUT ON;
+
 @dropall
 @createtable
 
@@ -30,8 +34,10 @@ EXEC populate_sr();
 
 -- populate ward tables
 EXEC populate_db();
-SELECT * FROM General_Ward WHERE ROWNUM=1;
-SELECT * FROM Screening_Ward WHERE ROWNUM=1;
-SELECT * FROM Pre_Surgery_Ward WHERE ROWNUM=1;
-SELECT * FROM Post_Surgery_Ward WHERE ROWNUM=1;
+-- SELECT * FROM General_Ward WHERE ROWNUM=1;
+-- SELECT * FROM Screening_Ward WHERE ROWNUM=1;
+-- SELECT * FROM Pre_Surgery_Ward WHERE ROWNUM=1;
+-- SELECT * FROM Post_Surgery_Ward WHERE ROWNUM=1;
 
+SELECT * FROM Flow;
+SELECT * FROM Beds;

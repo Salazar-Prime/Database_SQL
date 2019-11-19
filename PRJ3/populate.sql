@@ -12,6 +12,7 @@ set SERVEROUTPUT ON;
 -- creating extra tables
 @beds
 @flow
+@table_qu1
 
 -- triggers, functions, procedures
 @trg

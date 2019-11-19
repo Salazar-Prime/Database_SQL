@@ -1,5 +1,6 @@
 -- Create Bed Table
 CREATE TABLE Flow( Pname varchar2(30),
+				   Ptype varchar2(10),
 				   G_Date Date,
 				   S_Date Date,
 				   Pre_Date Date,

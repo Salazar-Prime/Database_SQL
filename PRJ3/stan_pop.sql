@@ -90,13 +90,14 @@ END;
 --Populate with Procedure 4
 
 -- Insert records into PATIENT_INPUT
-insert into PATIENT_INPUT values('Tom',to_date('01/01/05','MM/DD/YY'),'Cardiac');
+
 insert into PATIENT_INPUT values('Emma',to_date('01/01/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Liam',to_date('01/01/05','MM/DD/YY'),'Neuro');
 insert into PATIENT_INPUT values('Olivia',to_date('01/01/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Ava',to_date('01/01/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Elijah',to_date('01/01/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Mickey',to_date('01/05/05','MM/DD/YY'),'General');
+insert into PATIENT_INPUT values('Tom',to_date('01/01/05','MM/DD/YY'),'Cardiac');
 insert into PATIENT_INPUT values('Minnie',to_date('01/06/05','MM/DD/YY'),'Neuro');
 
 insert into PATIENT_INPUT values('Alexandra',to_date('01/07/05','MM/DD/YY'),'Cardiac');

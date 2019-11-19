@@ -146,8 +146,8 @@ IF needed='SUN' THEN
 
 -- Trigger 1
 CREATE OR REPLACE Trigger trg_gen
-After INSERT on GENERAL_WARD
-For Each ROW
+AFTER INSERT on GENERAL_WARD
+FOR EACH ROW
 DECLARE
 	needed date;
 	soonest date;
@@ -165,7 +165,7 @@ BEGIN
 
 	IF needed>=soonest THEN
 		-- create record in flow table
-		INSERT INTO FLOW (Pname, G_Date, S_Date) VALUES (:new.Patient_Name, :new.G_Admission_Date, needed);	
+		INSERT INTO FLOW (Pname, Ptype, G_Date, S_Date) VALUES (:new.Patient_Name, :new.Patient_Type, :new.G_Admission_Date, needed);	
 		INSERT INTO SCREENING_WARD VALUES(:new.Patient_Name,needed,I_Bed_No,:new.Patient_Type);
 
 	ELSE 
@@ -253,7 +253,7 @@ BEGIN
 
 			-- transfer paitent to post surgery ward
 			INSERT INTO POST_SURGERY_WARD values (:new.Patient_Name, needed+(i-1), Null, 1, :new.Patient_Type);
-			
+
 		ELSE
 
 			-- update beds table
@@ -268,7 +268,7 @@ BEGIN
 			INSERT INTO PRE_SURGERY_WARD values (:new.Patient_Name, soonest, I_BeD_No,:new.Patient_Type);				
 			INSERT INTO POST_SURGERY_WARD VALUES (:new.Patient_Name, soonest + 2, Null, 1, :new.Patient_Type);
 
-		END IF;		   
+		END IF;		  
 			  
 	END IF;
 

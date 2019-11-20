@@ -3,7 +3,7 @@ rem Varun Aggarwal
 rem aggarw82
 
 set linesize 200;
-set pagesize 50;
+set pagesize 70;
 set SERVEROUTPUT ON;
 
 @dropall
@@ -13,6 +13,7 @@ set SERVEROUTPUT ON;
 @beds
 @flow
 @table_qu1
+@table_qu4
 @coal
 -- triggers, functions, procedures
 @trg
@@ -42,3 +43,6 @@ EXEC populate_db();
 
 SELECT * FROM Flow;
 SELECT * FROM Beds;
+
+-- call myexec
+@myexec

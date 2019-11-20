@@ -107,7 +107,7 @@ IF needed='SUN' THEN
  ELSIF needed='TUE' THEN
  INSERT INTO Surgeon_Schedule Values('Dr. Richards',Cur_Date);
  INSERT INTO Surgeon_Schedule Values('Dr. Gower',Cur_Date);
- INSERT INTO Surgeon_Schedule Values('6',Cur_Date);
+ INSERT INTO Surgeon_Schedule Values('Dr. Rutherford',Cur_Date);
 
 
  ELSIF needed='WED' THEN

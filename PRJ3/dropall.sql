@@ -14,6 +14,12 @@ Drop Table PATIENT_INPUT;
 -- Drop Extra table
 DROP TABLE Beds;
 DROP TABLE Flow;
+
 DROP TABLE table_qu1;
+DROP TABLE table_qu4;
+DROP TABLE table_qu4_out;
+
 DROP TABLE datum;
 DROP TABLE interval;
+
+DROP TABLE Patient_Surgery_Table;

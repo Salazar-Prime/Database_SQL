@@ -9,7 +9,7 @@ IS
 	debug2 varchar(100);
 	Cursor Pinp IS SELECT * FROM PATIENT_INPUT ORDER BY General_Ward_admission_date, Patient_Name;
 	cur Pinp%ROWTYPE;
-begin
+BEGIN
 	For cur in Pinp
 	loop
 		INSERT INTO General_Ward Values(cur.Patient_Name, cur.General_Ward_admission_date, cur.Patient_Type);
@@ -170,7 +170,7 @@ BEGIN
 
 	ELSE 
 		-- create record in flow table
-		INSERT INTO FLOW (Pname, G_Date, S_Date) VALUES (:new.Patient_Name, :new.G_Admission_Date, soonest);	
+		INSERT INTO FLOW (Pname, Ptype, G_Date, S_Date) VALUES (:new.Patient_Name, :new.Patient_Type, :new.G_Admission_Date, soonest);	
 		INSERT INTO SCREENING_WARD VALUES(:new.Patient_Name,soonest,I_Bed_No,:new.Patient_Type);
 
 	END IF;

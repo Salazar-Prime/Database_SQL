@@ -13,7 +13,7 @@ set SERVEROUTPUT ON;
 @beds
 @flow
 @table_qu1
-
+@coal
 -- triggers, functions, procedures
 @trg
 

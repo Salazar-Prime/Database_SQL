@@ -15,5 +15,5 @@ Drop Table PATIENT_INPUT;
 DROP TABLE Beds;
 DROP TABLE Flow;
 DROP TABLE table_qu1;
-
-
+DROP TABLE datum;
+DROP TABLE interval;

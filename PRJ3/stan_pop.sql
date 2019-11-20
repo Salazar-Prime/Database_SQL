@@ -1,6 +1,6 @@
 rem EE 562 Project 3
-rem Stanley Doerger
-rem SDOERGER
+rem Varun Aggarwal	
+rem aggarw82
 
 -- Insert records into Patient_Chart
 --insert into Patient_Chart values(Patient_Name varchar2(30),Pdate date,Temperature number,BP number);

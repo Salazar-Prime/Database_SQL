@@ -41,8 +41,15 @@ BEGIN
 		insert into Patient_Chart values('Persiphony',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(99,105)),round(dbms_random.value(130,150)));
 		
-		--Unhealthy
-		insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,141);
+		--Unhealthy bob
+		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,141);
+		-- Healthy bob
+		insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,139);
+		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/09/05','mm/dd/yy');
+		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/10/05','mm/dd/yy');
+		-- update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/11/05','mm/dd/yy');
+		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/12/05','mm/dd/yy');
+		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/13/05','mm/dd/yy');
 		
 		--Healthy
 		--insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,98.5,120);

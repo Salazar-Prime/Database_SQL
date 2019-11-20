@@ -95,6 +95,7 @@ dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 2');
 dbms_output.put_line('==================================================');
+dbms_output.put_line(chr(10));
 end;
 /
 
@@ -124,6 +125,7 @@ dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 3');
 dbms_output.put_line('==================================================');
+dbms_output.put_line(chr(10));
 end;
 /
 DECLARE
@@ -250,6 +252,49 @@ SELECT * FROM table_qu4_out ORDER BY total_sur DESC;
 
 
 
+
+/* Query 5 */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Query 5');
+dbms_output.put_line('==================================================');
+end;
+/
+TRUNCATE TABLE datum;
+TRUNCATE TABLE interval;
+DECLARE
+	-- dates for surgeries (start and end)
+	i_date date;
+	start_date date := to_date('04/01/05','mm/dd/yy');
+	co number;
+BEGIN
+	
+	INSERT INTO datum VALUES (null);
+	FOR i IN 0..29 
+	LOOP
+
+		i_date := start_date + i;		
+		SELECT COUNT(*) INTO co FROM Patient_Surgery_Table WHERE psur_date = i_date AND sname != 'Dr. Gower' AND sname != 'Dr. Taylor';
+		IF co != 0 THEN
+			INSERT INTO datum VALUES (i_date);
+		ELSE
+			INSERT INTO datum VALUES (null);
+		END IF;
+
+	END LOOP;
+	INSERT INTO datum VALUES (null);
+	coal;
+END;
+/
+SELECT * FROM interval;
+
+
+
+
+
+
+
 /* Query 8 */
 begin
 dbms_output.put_line(chr(10));
@@ -361,3 +406,5 @@ END;
 EXEC coal;
 DELETE interval WHERE S_Date = E_Date;
 SELECT * FROM interval;
+
+SET FEEDBACK ON;

@@ -1,5 +1,7 @@
+SET FEEDBACK OFF;
 /* Query 1 */
 begin
+dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 1');
 dbms_output.put_line('==================================================');
@@ -81,8 +83,15 @@ DROP PROCEDURE query1;
 SELECT * FROM table_qu1;
 -- SHOW ERROR;
 
+
+
+
+
+
+
 /* Query 2*/
 begin
+dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 2');
 dbms_output.put_line('==================================================');
@@ -104,8 +113,14 @@ BEGIN
 END;
 /
 
+
+
+
+
+
 /* Query 3 */
 begin
+dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 3');
 dbms_output.put_line('==================================================');
@@ -150,8 +165,94 @@ BEGIN
 END;
 /
 
+
+
+
+
+
+/* Query 4 */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Query 4');
+dbms_output.put_line('==================================================');
+end;
+/
+TRUNCATE TABLE datum;
+TRUNCATE TABLE interval;
+TRUNCATE TABLE table_qu4;
+TRUNCATE TABLE table_qu4_out;
+DECLARE
+	-- dates for surgeries (start and end)
+	i_date date;
+	start_date date;
+	end_date date;
+	co number;
+	sur_name varchar(30);
+
+BEGIN 
+
+	-- ############ first half: calculating the interval
+	SELECT psur_date INTO start_date FROM Patient_Surgery_Table WHERE ROWNUM = 1;
+	SELECT psur_date INTO end_date FROM (SELECT psur_date FROM Patient_Surgery_Table ORDER BY psur_date DESC) WHERE ROWNUM = 1;
+
+	INSERT INTO datum VALUES (null);
+	FOR i IN 0..end_date - start_date 
+	LOOP
+
+		i_date := start_date + i;
+		
+		SELECT COUNT(*) INTO co FROM Patient_Surgery_Table WHERE psur_date = i_date;
+		IF co != 0 THEN
+			INSERT INTO datum VALUES (i_date);
+		ELSE
+			INSERT INTO datum VALUES (null);
+		END IF;
+
+	END LOOP;
+	INSERT INTO datum VALUES (null);
+	coal;
+
+	-- ############ second half: calculating surgeries in each interval per surgeon
+
+	FOR cur IN (SELECT * FROM interval)
+	LOOP
+		FOR cur1 IN (SELECT sname, COUNT(sname) AS a1 FROM Patient_Surgery_Table WHERE Psur_date >= cur.s_date AND Psur_date <= cur.e_date GROUP BY sname)
+		LOOP
+			INSERT INTO table_qu4 VALUES (cur.s_date, cur.e_date, cur1.a1, cur1.sname);
+		END LOOP;
+		
+	END LOOP;
+
+	-- ############ third half: finding name of surgeon who performs max surgeries
+
+	FOR cur IN (SELECT * FROM interval)
+	LOOP
+
+		SELECT SUM(total_sur) INTO co FROM table_qu4 WHERE  s_date = cur.s_date AND e_date = cur.e_date;
+		
+
+		FOR cur1 IN ( SELECT surgeon_name FROM table_qu4 
+					  WHERE s_date = cur.s_date AND e_date = cur.e_date AND total_sur = ( SELECT MAX(total_sur) 
+																							FROM table_qu4
+																							WHERE s_date = cur.s_date AND e_date = cur.e_date))
+		LOOP
+			INSERT INTO table_qu4_out VALUES (cur.s_date, cur.e_date, co, cur1.surgeon_name);
+		END LOOP;
+	END LOOP;
+
+END;
+/
+SELECT * FROM table_qu4_out ORDER BY total_sur DESC;
+
+
+
+
+
+
 /* Query 8 */
 begin
+dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 8');
 dbms_output.put_line('==================================================');
@@ -211,8 +312,14 @@ EXEC coal;
 -- SELECT * FROM datum;
 SELECT * FROM interval;
 
+
+
+
+
+
 /* Query 9 */
 begin
+dbms_output.put_line(chr(10));
 dbms_output.put_line('==================================================');
 dbms_output.put_line('Query 9');
 dbms_output.put_line('==================================================');
@@ -224,7 +331,6 @@ TRUNCATE TABLE interval;
 DECLARE
 	-- dates for bob
 	BP_date number;
-	-- duration number := 0;
 	i_date date;
 	-- other varibles
 	CURSOR bob_visits IS SELECT * FROM Flow WHERE Pname='Bob';

@@ -1,31 +1,55 @@
-/* Query 5 */
--- SELECT * FROM table_qu4;
-TRUNCATE TABLE datum;
-TRUNCATE TABLE interval;
+/* Query 7
+ */
+
 DECLARE
-	-- dates for surgeries (start and end)
-	i_date date;
-	start_date date := to_date('04/01/05','mm/dd/yy');
+	-- dates for surgeries
+	sur1_date date;
+	sur2_date date;
+
+	sur_name varchar2(30);
+	ass_name varchar2(30);
 BEGIN
 	
-	INSERT INTO datum VALUES (null);
-	FOR i IN 0..29 
+	DBMS_OUTPUT.PUT_LINE(rpad('Surgery No',15)||rpad('Patient Name',30)||rpad('Surgeon Name',30)||rpad('Assistant Name',30));
+	DBMS_OUTPUT.PUT_LINE(rpad('----------',15)||rpad('------------',30)||rpad('------------',30)||rpad('--------------',30));
+	
+	FOR cur IN (SELECT * FROM Flow WHERE Post_Date >= to_date('04/07/05','mm/dd/yy') AND Post_Date <= to_date('04/16/05','mm/dd/yy')  AND Ptype = 'Cardiac')
 	LOOP
+		sur1_date := cur.Post_Date;
+		sur2_date := sur1_date + 2;
 
-		i_date := start_date + i;		
-		SELECT COUNT(*) INTO co FROM Patient_Surgery_Table WHERE psur_date = i_date AND sname != 'Dr. Gower' AND sname != 'Dr. Taylor';
-		IF co != 0 THEN
-			INSERT INTO datum VALUES (i_date);
-		ELSE
-			INSERT INTO datum VALUES (null);
+		IF sur1_date >= to_date('04/09/05','mm/dd/yy') THEN
+
+			SELECT name INTO sur_name FROM ((SELECT name FROM Surgeon_Schedule WHERE Surgery_Date = sur1_date AND name ='Dr. Gower') 
+				  							 UNION 
+				  							(SELECT name FROM Surgeon_Schedule WHERE Surgery_Date = sur1_date AND name='Dr. Charles'));
+			
+			SELECT name INTO ass_name FROM Dr_Schedule WHERE Duty_Date = sur1_date AND ROWNUM = 1;
+
+			DBMS_OUTPUT.PUT_LINE(rpad(to_char(1),15)||rpad(cur.Pname,30)||rpad(sur_name,30)||rpad(ass_name,30));
+
+		END IF;
+
+		IF cur.scount = 2 THEN
+			IF sur2_date <= to_date('04/16/05','mm/dd/yy') THEN
+
+				SELECT name INTO sur_name FROM ((SELECT name FROM Surgeon_Schedule WHERE Surgery_Date = sur1_date AND name ='Dr. Gower') 
+				 UNION 
+				(SELECT name FROM Surgeon_Schedule WHERE Surgery_Date = sur1_date AND name='Dr. Charles'));
+
+				SELECT name INTO ass_name FROM Dr_Schedule WHERE Duty_Date = sur1_date AND ROWNUM = 1;
+
+				DBMS_OUTPUT.PUT_LINE(rpad(to_char(2),15)||rpad(cur.Pname,30)||rpad(sur_name,30)||rpad(ass_name,30));
+			END IF;
 		END IF;
 
 	END LOOP;
-	INSERT INTO datum VALUES (null);
-	coal;
+
+
 END;
 /
-SELECT * FROM interval;
+-- SELECT * FROM Flow;
+-- SELECT * FROM Flow WHERE Post_Date >= to_date('04/07/05','mm/dd/yy') AND Post_Date <= to_date('04/15/05','mm/dd/yy') AND Ptype = 'Cardiac';
 
 -- SELECT s_date, e_date FROM table_qu4 WHERE surgeon_name != 'Dr. Gower' ;
 -- DECLARE

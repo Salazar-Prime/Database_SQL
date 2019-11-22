@@ -1,15 +1,99 @@
---1 
+rem EE 562 Project 3
+rem Varun Aggarwal
+rem aggarw82
 
--- SELCT * FROM Flow;
+/* Output Configuration */
+set linesize 200;
+set pagesize 70;
+set SERVEROUTPUT ON;
 
---2
+/* create table */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Create Tables');
+dbms_output.put_line('==================================================');
+end;
+/
+@createtable
+
+
+/* creating extra tables */
+@beds
+@flow
+@table_qu1
+@table_qu4
+@coal
+
+
+/* triggers, functions, procedures */ 
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Create Triggers and Procedures');
+dbms_output.put_line('==================================================');
+end;
+/
+@trg
+SET FEEDBACK OFF;
+
+
+/* populate table */
+@populate
+
+
+/* Populate Doctor Schedule */
+EXEC populate_dr();
+
+
+/* Populate Surgeon Schedule */
+EXEC populate_sr();
+
+
+/* Show Patient Schedule */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Patient Schedule');
+dbms_output.put_line('==================================================');
+end;
+/
+
+SELECT * FROM Flow;
+
+
+/* Show Assistant Doctor Schedule */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Assistant Doctor Schedule');
+dbms_output.put_line('==================================================');
+end;
+/
 
 -- Select * from DR_Schedule;
---3
+
+
+/* Show Surgeon Schedule */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Surgeon Schedule');
+dbms_output.put_line('==================================================');
+end;
+/
 
 -- Select * from Surgeon_Schedule;
 
---4
+
+---------------------------------------------------------------------------------
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Create AND Display Patient Surgery View');
+dbms_output.put_line('==================================================');
+end;
+/
 
 CREATE TABLE Patient_Surgery_Table( Pname varchar(30),
 									Psur_date date,
@@ -60,9 +144,37 @@ BEGIN
 END;
 /
 
+BEGIN
+	IF dr_sr_schedule_verify(0) = 0 THEN
+		DBMS_OUTPUT.PUT_LINE('Problem with assistant doctor schedule');
+	END IF;
+
+	IF dr_sr_schedule_verify(1) = 0 THEN
+		DBMS_OUTPUT.PUT_LINE('Problem with Surgeon schedule');
+	END IF;
+END;
+/
+
+/* Create Patient Surgery View */
 CREATE OR REPLACE VIEW Patient_Surgery_View AS
 SELECT * FROM Patient_Surgery_Table;
 
---5
-
+/* Display Patient Surgery View */
 Select * from Patient_Surgery_View;
+
+SET FEEDBACK ON;
+
+
+/* Run Queries */
+@query
+
+/* Drop Tables */
+begin
+dbms_output.put_line(chr(10));
+dbms_output.put_line('==================================================');
+dbms_output.put_line('Drop Everything');
+dbms_output.put_line('==================================================');
+end;
+/
+
+@dropall

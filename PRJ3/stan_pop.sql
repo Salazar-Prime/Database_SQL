@@ -4,89 +4,89 @@ rem aggarw82
 
 -- Insert records into Patient_Chart
 --insert into Patient_Chart values(Patient_Name varchar2(30),Pdate date,Temperature number,BP number);
-BEGIN
-	for i in 0..365
-	loop
-		--unhealty tom
-		insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(97,100)),round(dbms_random.value(105,140)));
+-- BEGIN
+-- 	for i in 0..365
+-- 	loop
+-- 		--unhealty tom
+-- 		insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(97,100)),round(dbms_random.value(105,140)));
 		
-		--Random
-		-- insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Emma',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		-- insert into Patient_Chart values('Liam',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		-- insert into Patient_Chart values('Olivia',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Ava',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Elijah',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Mickey',to_date('01/05/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Minnnie',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		--Random
+-- 		-- insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Emma',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		-- insert into Patient_Chart values('Liam',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		-- insert into Patient_Chart values('Olivia',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Ava',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Elijah',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Mickey',to_date('01/05/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Minnnie',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		
-		insert into Patient_Chart values('Alexandra',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Billy',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Caitlin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Devin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Eric',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Frances',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Gordon',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Goofus',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Herbert',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Alexandra',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Billy',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Caitlin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Devin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Eric',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Frances',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Gordon',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Goofus',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Herbert',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
 		
-		insert into Patient_Chart values('Isaac',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('John',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('James',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		-- insert into Patient_Chart values('Kurt',to_date('01/06/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		-- insert into Patient_Chart values('Louis',to_date('01/06/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Merlin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Norman',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Orville',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Persiphony',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(99,105)),round(dbms_random.value(130,150)));
+-- 		insert into Patient_Chart values('Isaac',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('John',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('James',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		-- insert into Patient_Chart values('Kurt',to_date('01/06/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		-- insert into Patient_Chart values('Louis',to_date('01/06/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Merlin',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Norman',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Orville',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Persiphony',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(99,105)),round(dbms_random.value(130,150)));
 		
-		--Unhealthy bob
-		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,141);
-		-- Healthy bob
-		insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,139);
-		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/09/05','mm/dd/yy');
-		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/10/05','mm/dd/yy');
-		-- update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/11/05','mm/dd/yy');
-		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/12/05','mm/dd/yy');
-		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/13/05','mm/dd/yy');
+-- 		--Unhealthy bob
+-- 		-- insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,141);
+-- 		-- Healthy bob
+-- 		insert into Patient_Chart values('Bob',to_date('01/01/05','MM/DD/YY')+i,101,139);
+-- 		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/09/05','mm/dd/yy');
+-- 		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/10/05','mm/dd/yy');
+-- 		-- update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/11/05','mm/dd/yy');
+-- 		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/12/05','mm/dd/yy');
+-- 		update Patient_Chart SET BP=141 WHERE Patient_Name='Bob' AND PDate=to_date('01/13/05','mm/dd/yy');
 		
-		--Healthy
-		--insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Emma',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		insert into Patient_Chart values('Liam',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		insert into Patient_Chart values('Olivia',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Ava',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Elijah',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Mickey',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Minnnie',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		--Healthy
+-- 		--insert into Patient_Chart values('Tom',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Emma',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		insert into Patient_Chart values('Liam',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		insert into Patient_Chart values('Olivia',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Ava',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Elijah',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Mickey',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Minnnie',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
 		
-		--insert into Patient_Chart values('Alexandra',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Billy',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Caitlin',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Devin',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Eric',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Frances',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Gordon',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Goofus',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('Herbert',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Alexandra',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Billy',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Caitlin',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Devin',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Eric',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Frances',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Gordon',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Goofus',to_date('01/05/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Herbert',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
 		
-		--insert into Patient_Chart values('Isaac',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		-- insert into Patient_Chart values('John',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		--insert into Patient_Chart values('James',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		insert into Patient_Chart values('Kurt',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		insert into Patient_Chart values('Louis',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
-		-- insert into Patient_Chart values('Merlin',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		-- insert into Patient_Chart values('Norman',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		-- insert into Patient_Chart values('Orville',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
-		-- insert into Patient_Chart values('Persiphony',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('Isaac',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		-- insert into Patient_Chart values('John',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		--insert into Patient_Chart values('James',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		insert into Patient_Chart values('Kurt',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		insert into Patient_Chart values('Louis',to_date('01/01/05','MM/DD/YY')+i,98.5,120);
+-- 		-- insert into Patient_Chart values('Merlin',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		-- insert into Patient_Chart values('Norman',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		-- insert into Patient_Chart values('Orville',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
+-- 		-- insert into Patient_Chart values('Persiphony',to_date('01/06/05','MM/DD/YY')+i,98.5,120);
 
-		insert into Patient_Chart values('Darth',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('DarthMaul',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-		insert into Patient_Chart values('Emperor',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
-	end loop;
-END;
-/
+-- 		insert into Patient_Chart values('Darth',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('DarthMaul',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 		insert into Patient_Chart values('Emperor',to_date('01/01/05','MM/DD/YY')+i,round(dbms_random.value(95,102)),round(dbms_random.value(105,145)));
+-- 	end loop;
+-- END;
+-- /
 
 -- Insert records into DR_Schedule
 --insert into DR_Schedule values(Name varchar2(30),Ward varchar2(20),Duty_Date date);
@@ -125,11 +125,6 @@ insert into PATIENT_INPUT values('John',to_date('04/19/05','MM/DD/YY'),'Cardiac'
 insert into PATIENT_INPUT values('James',to_date('04/19/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Kurt',to_date('04/19/05','MM/DD/YY'),'Neuro');
 insert into PATIENT_INPUT values('Louis',to_date('04/19/05','MM/DD/YY'),'General');
-
--- insert into PATIENT_INPUT values('Darth Maul',to_date('04/19/05','MM/DD/YY'),'Cardiac');
--- insert into PATIENT_INPUT values('Darth',to_date('04/19/05','MM/DD/YY'),'Cardiac');
--- insert into PATIENT_INPUT values('Emperor',to_date('04/19/05','MM/DD/YY'),'Cardiac');
--- insert into PATIENT_INPUT values('Gordon',to_date('04/19/05','MM/DD/YY'),'General');
 
 insert into PATIENT_INPUT values('Goofus',to_date('05/05/05','MM/DD/YY'),'General');
 insert into PATIENT_INPUT values('Merlin',to_date('05/06/05','MM/DD/YY'),'Cardiac');

@@ -1,25 +1,41 @@
 rem EE 562 Project 3
-rem Keertana Marella
-rem kmarella
+rem Varun Aggarwal
+rem aggarw82
 
-Drop Table GENERAL_WARD;
-Drop Table SCREENING_WARD;
-Drop Table PRE_SURGERY_WARD;
-Drop Table POST_SURGERY_WARD;
-Drop Table Patient_Chart;
-Drop Table DR_Schedule;
-Drop Table Surgeon_Schedule;
-Drop Table PATIENT_INPUT;
+/* DROP Procedure */ 
+DROP PROCEDURE COAL;               
+DROP PROCEDURE POPULATE_CHART;  
+DROP PROCEDURE POPULATE_DB;      
+DROP PROCEDURE POPULATE_DR;        
+DROP PROCEDURE POPULATE_SR;        
 
--- Drop Extra table
+/* Trigger */
+DROP TRIGGER TRG_GEN;
+DROP TRIGGER TRG_POST;
+DROP TRIGGER TRG_SCR;
+
+/* DROP TABLEs and Views */
+DROP TABLE Patient_Chart;
+DROP TABLE GENERAL_WARD;
+DROP TABLE SCREENING_WARD;
+DROP TABLE PRE_SURGERY_WARD;
+DROP TABLE POST_SURGERY_WARD;
+DROP TABLE DR_Schedule;
+DROP TABLE Surgeon_Schedule;
+DROP TABLE PATIENT_INPUT;
+
+-- DROP Extra TABLE
 DROP TABLE Beds;
 DROP TABLE Flow;
 
-DROP TABLE table_qu1;
-DROP TABLE table_qu4;
-DROP TABLE table_qu4_out;
+DROP TABLE TABLE_qu1;
+DROP TABLE TABLE_qu4;
+DROP TABLE TABLE_qu4_out;
 
 DROP TABLE datum;
 DROP TABLE interval;
 
-DROP TABLE Patient_Surgery_Table;
+DROP TABLE Patient_Surgery_TABLE;
+DROP VIEW Patient_Surgery_View;
+
+

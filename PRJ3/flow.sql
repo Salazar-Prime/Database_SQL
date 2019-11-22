@@ -1,4 +1,8 @@
--- Create Bed Table
+rem EE 562 Project 3
+rem Varun Aggarwal
+rem aggarw82
+
+-- Create Flow Table
 CREATE TABLE Flow( Pname varchar2(30),
 				   Ptype varchar2(10),
 				   G_Date Date,
